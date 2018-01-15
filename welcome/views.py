@@ -27,7 +27,7 @@ def publish(request):
     publication_mode = request.GET.get('pm', "2")
 
     reader = geolite2.reader()
-    remote_ip = request.META.get('REMOTE_ADDR', "")
+    remote_ip = request.META.get('HTTP_X_FORWARDED_FOR', "")
     result = reader.get(remote_ip)
     if result:
         country = result['country']['names']['es']

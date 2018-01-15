@@ -13,6 +13,7 @@ from django.http import Http404
 from django.http import HttpResponseNotFound
 
 from geolite2 import geolite2
+import pprint
 
 
 def publish(request):
@@ -27,8 +28,15 @@ def publish(request):
 
     reader = geolite2.reader()
     result = reader.get(request.META.get('REMOTE_ADDR', ""))
-    country = result['country']['names']['es']
+    if result:
+        country = result['country']['names']['es']
+    else:
+        country = "N/A"
     geolite2.close()
+
+    pp = pprint.PrettyPrinter(indent=4)
+    print("\n\nResul:\n")
+    pp.pprint(result)
 
     content = None
 

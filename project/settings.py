@@ -32,7 +32,7 @@ SECRET_KEY = os.getenv(
 # SECRET_KEY = config('SECRET_KEY') # Uso de Python Decouple...
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+DEBUG = eval(os.getenv('DEBUG')) #      eval("False") return boolean: False
 
 ALLOWED_HOSTS = ['*']
 

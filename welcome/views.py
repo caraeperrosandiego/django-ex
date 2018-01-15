@@ -35,10 +35,10 @@ def publish(request):
         country = "N/A"
     geolite2.close()
 
-
-    print("Remote ip: {}\n".format(remote_ip))
-    print("\n\nResul:\n")
     pp = pprint.PrettyPrinter(indent=4)
+    print("\nMeta:\n")
+    pp.pprint(request.META)
+    print("\n\nResul:\n")
     pp.pprint(result)
 
     content = None

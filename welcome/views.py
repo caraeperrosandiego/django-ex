@@ -27,15 +27,18 @@ def publish(request):
     publication_mode = request.GET.get('pm', "2")
 
     reader = geolite2.reader()
-    result = reader.get(request.META.get('REMOTE_ADDR', ""))
+    remote_ip = request.META.get('REMOTE_ADDR', "")
+    result = reader.get(remote_ip)
     if result:
         country = result['country']['names']['es']
     else:
         country = "N/A"
     geolite2.close()
 
-    pp = pprint.PrettyPrinter(indent=4)
+
+    print("Remote ip: {}\n".format(remote_ip))
     print("\n\nResul:\n")
+    pp = pprint.PrettyPrinter(indent=4)
     pp.pprint(result)
 
     content = None

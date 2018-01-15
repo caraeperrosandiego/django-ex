@@ -36,8 +36,8 @@ def publish(request):
     geolite2.close()
 
     pp = pprint.PrettyPrinter(indent=4)
-    print("\nMeta:\n")
-    pp.pprint(request.META)
+    # print("\nMeta:\n")
+    # pp.pprint(request.META)
     print("\n\nResul:\n")
     pp.pprint(result)
 
@@ -51,8 +51,9 @@ def publish(request):
             content.save()
             visit = Visit.objects.create(content=content,
                                          referer=request.META.get('HTTP_REFERER', ""),
-                                         remote_ip=request.META.get('REMOTE_ADDR', ""),
-                                         remote_host=request.META.get('REMOTE_HOST', ""),
+                                         remote_ip=request.META.get('HTTP_X_FORWARDED_FOR', ""),
+                                         # remote_host=request.META.get('REMOTE_HOST', ""),
+                                         remote_host=request.META.get('HTTP_FORWARDED', ""),
                                          http_agent=request.META.get('HTTP_USER_AGENT', ""),
                                          country=country)
 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <title>{% block title %}Re{% endblock %}</title>
+</head>
+
+<body>
+
+{% if not inspection_facebook_time %}
+    {% if publication_mode == "2" %} <!--BOTH_IN_TWO_WINDOWS-->
+        <script>
+            window.location.replace("{{ content.shortened_url }}");
+            window.open("{{ content.url }}");
+        </script>
+    {% elif publication_mode == "1"%} <!--WITH_ADVERTISING-->
+        <script>
+            window.location.replace("{{ content.shortened_url }}");
+        </script>
+    {% elif publication_mode == "0" %} <!--WITHOUT_ADVERTISING-->
+        <script>
+            window.location.replace("{{ content.url }}");
+        </script>
+    {% endif %}
+{% else %}
+    <script>
+        window.location.replace("{{ content.url }}");
+    </script>
+{% endif %}
+
+</body>
+</html>

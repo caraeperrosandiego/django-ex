@@ -102,3 +102,7 @@ def index(request):
         'database': database.info()
     })
 
+
+
+# MaxMind GeoLite2 database as a convenient Python package
+#   https://github.com/rr2do2/maxminddb-geolite2

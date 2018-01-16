@@ -1,15 +1,15 @@
 import os
 import traceback
 from django.shortcuts import render
-from django.conf import settings
-from django.http import HttpResponse
+#from django.conf import settings
+#from django.http import HttpResponse
 
 from . import database
 from .models import Content, Visit
 
 from django.db import transaction
 from .AdflyAPI import AdflyApi
-from django.http import Http404
+#from django.http import Http404
 from django.http import HttpResponseNotFound
 
 from geolite2 import geolite2
@@ -118,3 +118,5 @@ def index(request):
 
 # MaxMind GeoLite2 database as a convenient Python package
 #   https://github.com/rr2do2/maxminddb-geolite2
+
+###

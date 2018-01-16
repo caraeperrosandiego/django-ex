@@ -151,3 +151,5 @@ ADFLY_USER_ID = os.getenv('ADFLY_USER_ID')
 
 # Mas sobre decouple: A Complete Beginner's Guide to Django - Part 7
 # https://simpleisbetterthancomplex.com/series/2017/10/16/a-complete-beginners-guide-to-django-part-7.html
+
+###

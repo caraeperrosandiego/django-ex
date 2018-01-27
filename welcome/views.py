@@ -13,7 +13,7 @@ from .AdflyAPI import AdflyApi
 from django.http import HttpResponseNotFound
 
 from geolite2 import geolite2
-import pprint
+# import pprint
 
 
 def publish(request):
@@ -22,7 +22,13 @@ def publish(request):
     BOTH_IN_TWO_WINDOWS = 2
 
     shorter_url_name_service = request.GET.get('suns', "")
-    shortened_url = request.GET.get('su', "")
+
+    shortened_url_protocol = request.GET.get('ptc', "")
+    shortened_url_netloc = request.GET.get('nl', "")
+    shortened_url_path = request.GET.get('pth', "")
+
+    shortened_url = shortened_url_protocol+"://"+shortened_url_netloc+shortened_url_path
+
     # publication_mode = int(request.GET.get('pm', "2"))
     publication_mode = request.GET.get('pm', "2")
 
@@ -35,11 +41,11 @@ def publish(request):
         country = "N/A"
     geolite2.close()
 
-    pp = pprint.PrettyPrinter(indent=4)
+        # pp = pprint.PrettyPrinter(indent=4)
     # print("\nMeta:\n")
     # pp.pprint(request.META)
-    print("\n\nResul:\n")
-    pp.pprint(result)
+        # print("\n\nResul:\n")
+        # pp.pprint(result)
 
     content = None
 
@@ -92,7 +98,7 @@ def publish(request):
 
     visits = Visit.objects.filter(content=content).count()
 
-    if visits > 3:
+    if visits > 5:
         return render(request, 'welcome/publish.html', {
             'inspection_facebook_time':False,
             'publication_mode':publication_mode,
